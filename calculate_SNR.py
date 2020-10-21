@@ -38,27 +38,32 @@ def SNR(signal, SNR, seed):
 
 
 def signal_plots(signal,noise,noisy_signal):
-import matplotlib.pyplot as plt
-import numpy as np
-fig, axs = plt.subplots(3)
+    if signal.ndim == 2:
+        signal = signal[:,0]
+    import matplotlib.pyplot as plt
+    import numpy as np
+    fig, axs = plt.subplots(3)
+    
+    fig.set_size_inches(9.5, 5.5)
+    #axs.plot(data)
+    #axs.plot(data2)
+    
+    axs[0].plot(signal, color = "deepskyblue")
+    axs[1].plot(noise , color = "deepskyblue")
+    axs[2].plot(noisy_signal , color = "deepskyblue")
+    
+    # Defining custom 'xlim' and 'ylim' values.
+    custom_ylim = (-2, 2)
+    
+    # Setting the values for all axes.
+    plt.setp(axs, ylim=custom_ylim)
+    
+    # Adjust the Y-axis values
+    axs[0].locator_params(axis='y', nbins=2)
+    axs[1].locator_params(axis='y', nbins=2)
+    axs[2].locator_params(axis='y', nbins=2)
+    fig.tight_layout()
 
-fig.set_size_inches(9.5, 5.5)
-#axs.plot(data)
-#axs.plot(data2)
 
-axs[0].plot(signal, color = "deepskyblue")
-axs[1].plot(noise , color = "deepskyblue")
-axs[2].plot(noisy_signal , color = "deepskyblue")
 
-# Defining custom 'xlim' and 'ylim' values.
-custom_ylim = (-2, 2)
-
-# Setting the values for all axes.
-plt.setp(axs, ylim=custom_ylim)
-
-# Adjust the Y-axis values
-axs[0].locator_params(axis='y', nbins=2)
-axs[1].locator_params(axis='y', nbins=2)
-axs[2].locator_params(axis='y', nbins=2)
-fig.tight_layout()
 
